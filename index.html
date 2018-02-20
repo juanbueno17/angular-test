@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="miPrimeraAplicacion">
+<html ng-app="DIApp">
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
@@ -8,10 +8,13 @@
   </head>
   <body>
     <h1>Mi primer aplicacion Angular</h1>
-    <div ng-controller="miPrimerControlador">
+    <!--div ng-controller="miPrimerControlador">
       <input type="text" ng-model="name"></input>
       {{name + " "}}{{sayHello()}}
       El nombre Ingresado es: {{name}}
+    </div-->
+    <div ng-controller = 'DIController'>
+      <input type="text" ng-model="name" ng-blur = "upper();">
     </div>
   </body>
 </html>

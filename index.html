@@ -16,5 +16,28 @@
     <div ng-controller = 'DIController'>
       <input type="text" ng-model="name" ng-blur = "upper();">
     </div>
+    <div ng-controller = 'MsgController'>
+      Mensaje es: <br>
+      {{sayMessage()}}
+    </div>
+    <div ng-controller = 'FirstController'>
+      <input type="text" ng-model="nuevoComentario.comentario"><br>
+      <input type="text" ng-model="nuevoComentario.userName"><br>
+      <button ng-click="agregarComentario()">Agregar comentario</button>
+      <h3>Comentarios</h3>
+      <ul>
+        <li ng-repeat="comentario in comentarios">
+          {{comentario.comentario}} - <strong>{{comentario.userName}}</strong>
+        </li>
+      </ul>
+    </div>
+    <div ng-controller = 'FirstController2'>
+      <ul>
+        <li ng-repeat="post in posts">
+          <h2>{{post.id}}</h2>
+          <p>{{post.name}}</p>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>

@@ -2,7 +2,7 @@
   'use strict';
   var x = "hola";
 
-  var aplicacion = angular.module('DIApp', [])
+  var aplicacion = angular.module('DIApp', ["LocalStorageModule"])
 
   /*aplicacion.controller('miPrimerControlador', function($scope){
     $scope.name = "JuanK";
@@ -19,7 +19,6 @@
       var upCase = $filter('uppercase');
       $scope.name = upCase($scope.name);
     };
-    //console.console.log($injector.AnnonateMe(DIController));
   }
 
   aplicacion.controller('MsgController', MsgController);
@@ -32,9 +31,9 @@
     }
   }
 
-  aplicacion.controller("FirstController", FirstController);
-  FirstController.$inject = ['$scope'];
-  function FirstController($scope){
+  aplicacion.controller("Controller1", Controller1);
+  Controller1.$inject = ['$scope'];
+  function Controller1($scope){
     $scope.nombre = "JuanK";
     $scope.nuevoComentario = {};
     $scope.comentarios = [
@@ -53,31 +52,36 @@
     }
   }
 
-  aplicacion.controller("FirstController2", FirstController2);
-  FirstController2.$inject = ['$scope', '$http'];
-  function FirstController2($scope, $http){
+  aplicacion.controller("Controller2", Controller2);
+  Controller2.$inject = ['$scope', '$http'];
+  function Controller2($scope, $http){
     $scope.posts = [];
-    var respuesta = $http.get("https://jsonplaceholder.typicode.com/users");
-    respuesta.success(DescargaCorrecta)
-    respuesta.error(DescargaErrada);
-
-    function DescargaCorrecta(data){
+    $scope.newPost = {};
+    $http.get("https://jsonplaceholder.typicode.com/posts")
+    .success(function(data){
       console.log(data);
       $scope.posts = data;
+    })
+    .error(function(err){
+      console.log(err);
+    });
+
+    $scope.addPost = function(){
+      $http.post("https://jsonplaceholder.typicode.com/posts", {
+        title: $scope.newPost.title,
+        body: $scope.newPost.body,
+        userId: 1
+      })
+      .success(function(data, status, headers, config){
+        console.log(data);
+        $scope.posts.push(data);
+        $scope.newPost = {};
+      })
+      .error(function(error, status, headers, config){
+        console.log(error);
+      });
     }
-    function DescargaErrada(err){}
-
-    // $scope.addPost = function(){
-    //   $http.post("");
-    // }
   }
-
-
-  function AnnonateMe(name, job, blah){
-    return "Blah!";
-  }
-
-  console.log(DIController.toString());
 })();
 
 // !function(){"use strict";function n(n,e,o){n.name="JuanK2",n.upper=function(){var o=e("uppercase");n.name=o(n.name)}}angular.module("DIApp",[]).controller("DIController",["$scope","$filter",n]),console.log(n.toString())}();

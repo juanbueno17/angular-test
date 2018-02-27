@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
+    <script src="angular-local-storage.min.js"></script>
     <script src="app.js"></script>
     <title>Mi Primera Aplicacion AngularJS App</title>
   </head>
@@ -20,7 +21,7 @@
       Mensaje es: <br>
       {{sayMessage()}}
     </div>
-    <div ng-controller = 'FirstController'>
+    <div ng-controller = 'Controller1'>
       <input type="text" ng-model="nuevoComentario.comentario"><br>
       <input type="text" ng-model="nuevoComentario.userName"><br>
       <button ng-click="agregarComentario()">Agregar comentario</button>
@@ -31,11 +32,25 @@
         </li>
       </ul>
     </div>
-    <div ng-controller = 'FirstController2'>
+    <div ng-controller = 'Controller2'>
+      <input type="text" ng-model="newPost.title"><br>
+      <textarea ng-model="newPost.body"></textarea>
+      <button ng-click="addPost()">Enviar</button>
       <ul>
         <li ng-repeat="post in posts">
-          <h2>{{post.id}}</h2>
-          <p>{{post.name}}</p>
+          <h2>{{post.title}}</h2>
+          <p>{{post.body}}</p>
+        </li>
+      </ul>
+    </div>
+    <div ng-controller = 'Controller3'>
+      <input type="text" ng-model="newPost.title"><br>
+      <textarea ng-model="newPost.body"></textarea>
+      <button ng-click="addPost()">Enviar</button>
+      <ul>
+        <li ng-repeat="post in posts">
+          <h2>{{post.title}}</h2>
+          <p>{{post.body}}</p>
         </li>
       </ul>
     </div>

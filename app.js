@@ -82,6 +82,58 @@
       });
     }
   }
+  aplicacion.controller("Controller3", Controller3);
+  Controller3.$inject = ['$scope', 'localStorageService'];
+  function Controller3($scope, localStorageService){
+    if(localStorageService.get("angular-todoList")){
+      $scope.todo = localStorageService.get("angular-todoList");
+    }
+    else {
+      $scope.todo = [];
+    }
+    $scope.$watchCollection('todo', function(newValue, oldValue){
+      // return $scope.newActv;
+      localStorageService.set("angular-todoList", $scope.todo);
+    });
+    $scope.addActv = function(){
+      $scope.todo.push($scope.newActv);
+      $scope.newActv = {};
+    }
+  }
+  // aplicacion.controller("Controller3", Controller3);
+  // Controller3.$inject = ['$scope', 'localStorageService'];
+  // function Controller3($scope, localStorageService){
+  //   if(localStorageService.get("angular-todoList")){
+  //     $scope.todo = localStorageService.get("angular-todoList");
+  //   }
+  //   else {
+  //     $scope.todo = [];
+  //   }
+  //   $scope.$watch(function(){
+  //     return $scope.newActv;
+  //   }, function(newValue, oldValue){
+  //     console.log(newValue);
+  //     console.log(oldValue);
+  //   });
+  //   $scope.addActv = function(){
+  //     $scope.todo.push($scope.newActv);
+  //     $scope.newActv = {};
+  //     localStorageService.set("angular-todoList", $scope.todo);
+  //   }
+  //   $scope.clean = function(){
+  //     $scope.todo = [];
+  //     localStorageService.set("angular-todoList", $scope.todo);
+  //   }
+  // }
+  // aplicacion.controller("Controller3", function($scope, localStorageService){
+  //   $scope.todo = [];
+  //   /*
+  //   */
+  //   $scope.addActv = function(){
+  //     $scope.todo.push($scope.newActv);
+  //     $scope.newActv = {};
+  //   }
+  // });
 })();
 
 // !function(){"use strict";function n(n,e,o){n.name="JuanK2",n.upper=function(){var o=e("uppercase");n.name=o(n.name)}}angular.module("DIApp",[]).controller("DIController",["$scope","$filter",n]),console.log(n.toString())}();

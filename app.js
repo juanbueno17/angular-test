@@ -99,6 +99,10 @@
       $scope.todo.push($scope.newActv);
       $scope.newActv = {};
     }
+    $scope.clean = function(){
+      $scope.todo = [];
+      localStorageService.set("angular-todoList", $scope.todo);
+    }
   }
   // aplicacion.controller("Controller3", Controller3);
   // Controller3.$inject = ['$scope', 'localStorageService'];
